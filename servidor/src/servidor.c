@@ -14,6 +14,7 @@ int main() {
             {
             case EJECUTAR_CE:
                 contexto_ejecucion * ce = recibir_ce(socket_cliente);
+
                 imprimir_ce(ce, server_log);
                 break;
             default:

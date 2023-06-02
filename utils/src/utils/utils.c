@@ -519,17 +519,43 @@ void imprimir_ce(contexto_ejecucion* ce, t_log* logger) {
 	//imprimir_tabla_segmentos
 }
 
+char* recorrerRegistro(t_registro* registros){ // solucion 1
+	char* cadena = malloc(4);
+	for(int i=0;i<4;i++){
+		cadena[i] = registros->AX[i];
+	}
+    cadena[4] = '\0';
+    return cadena;
+} // luego de usarse en alguna funcion, se deberia liberar el espacio en memoria con free
+
 void imprimir_registros(t_registro* registros , t_log* logger) {
-	log_trace(logger, "El registro AX es %s", registros->AX);
-	log_trace(logger, "El registro BX es %s", registros->BX);
-	log_trace(logger, "El registro CX es %s", registros->CX);
-	log_trace(logger, "El registro DX es %s", registros->DX);
-	log_trace(logger, "El registro EAX es %s", registros->EAX);
-	log_trace(logger, "El registro EBX es %s", registros->EBX);
-	log_trace(logger, "El registro ECX es %s", registros->ECX);
-	log_trace(logger, "El registro EDX es %s", registros->EDX);
-	log_trace(logger, "El registro RAX es %s", registros->RAX);
-	log_trace(logger, "El registro RBX es %s", registros->RBX);
-	log_trace(logger, "El registro RCX es %s", registros->RCX);
-	log_trace(logger, "El registro RDX es %s", registros->RDX);
+
+	log_trace(logger, "El registro AX es %s", recorrerRegistro(registros));
+	log_trace(logger, "El registro AX es %.*s", 4,registros->AX); // solucion 2
+	log_trace(logger, "El registro BX es %.*s", 4,registros->BX);
+	log_trace(logger, "El registro CX es %.*s", 4,registros->CX);
+	log_trace(logger, "El registro DX es %.*s", 4,registros->DX);
+	log_trace(logger, "El registro EAX es %.*s",8,registros->EAX);
+	log_trace(logger, "El registro EBX es %.*s",8,registros->EBX);
+	log_trace(logger, "El registro ECX es %.*s",8,registros->ECX);
+	log_trace(logger, "El registro EDX es %.*s",8,registros->EDX);
+	log_trace(logger, "El registro RAX es %.*s",16,registros->RAX);
+	log_trace(logger, "El registro RBX es %.*s",16,registros->RBX);
+	log_trace(logger, "El registro RCX es %.*s",16,registros->RCX);
+	log_trace(logger, "El registro RDX es %.*s",16,registros->RDX);
+
+	log_error(logger,"verifico los registros para ver si fueron afectados");
+
+	log_trace(logger, "El registro BX es %s",registros->BX);
+	log_trace(logger, "El registro CX es %s",registros->CX);
+	log_trace(logger, "El registro DX es %s",registros->DX);
+	log_trace(logger, "El registro EAX es %s",registros->EAX);
+	log_trace(logger, "El registro EBX es %s",registros->EBX);
+	log_trace(logger, "El registro ECX es %s",registros->ECX);
+	log_trace(logger, "El registro EDX es %s",registros->EDX);
+	log_trace(logger, "El registro RAX es %s",registros->RAX);
+	log_trace(logger, "El registro RBX es %s",registros->RBX);
+	log_trace(logger, "El registro RCX es %s",registros->RCX);
+	log_trace(logger, "El registro RDX es %s",registros->RDX);
+
 }
