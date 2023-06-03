@@ -530,7 +530,7 @@ char* recorrerRegistro(t_registro* registros){ // solucion 1
 
 void imprimir_registros(t_registro* registros , t_log* logger) {
 
-	log_trace(logger, "El registro AX es %s", recorrerRegistro(registros));
+	log_trace(logger, "El registro AX es %s", recorrerRegistro(registros)); //solucion 1
 	log_trace(logger, "El registro AX es %.*s", 4,registros->AX); // solucion 2
 	log_trace(logger, "El registro BX es %.*s", 4,registros->BX);
 	log_trace(logger, "El registro CX es %.*s", 4,registros->CX);
