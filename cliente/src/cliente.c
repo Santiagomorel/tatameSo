@@ -5,9 +5,12 @@ int main(int argc, char* argv[]) {
 
     conexion = crear_conexion(IP, "9001");
     pcb = pcb_create();
-    nuevoContexto = obtener_ce(pcb);
-    imprimir_ce(nuevoContexto, cliente_log);
-    enviar_ce(conexion, nuevoContexto, EJECUTAR_CE, cliente_log);
+    // nuevoContexto = obtener_ce(pcb);
+    generar_tabla_segmentos(pcb);
+    // imprimir_ce(nuevoContexto, cliente_log);
+    // enviar_ce(conexion, nuevoContexto, EJECUTAR_CE, cliente_log);
+    imprimir_tabla_segmentos(pcb->tabla_segmentos, cliente_log);
+    enviar_tabla_segmentos(conexion, pcb, TABLA_SEGMENTOS, cliente_log);
     return 0;
 }
 
@@ -16,8 +19,8 @@ t_pcb *pcb_create()
 {
     log_trace(cliente_log, "creo el pcb");
     t_pcb *new_pcb = malloc(sizeof(t_pcb));
-
-    new_pcb->registros_cpu = crear_registros();
+    new_pcb->id = 60;
+    // new_pcb->registros_cpu = crear_registros();
     // new_pcb->tabla_paginas = -1; // TODO de la conexion con memoria
 
     return new_pcb;
@@ -111,3 +114,7 @@ void copiar_PC_pcb_a_ce(t_pcb* pcb, contexto_ejecucion* ce) {
 void copiar_PC_ce_a_pcb(contexto_ejecucion* ce, t_pcb* pcb) {
     pcb->program_counter = ce->program_counter;
 }
+
+/*-------------------------------------------*/
+// crear una tabla de segmentos
+// enviar tabla segmentos -> empaquetar un id + la tabla de segmentos

@@ -202,4 +202,18 @@ void agregar_ce_a_paquete(t_paquete *, contexto_ejecucion *, t_log*);
 
 void imprimir_ce(contexto_ejecucion* , t_log*);
 void imprimir_registros(t_registro* , t_log*);
+
+typedef struct{
+	int id;
+	t_list* tabla_segmentos; //
+}t_proceso;
+
+void generar_tabla_segmentos(t_pcb*);
+t_segmento* crear_segmento(int id_seg, int base, int tamanio);
+void enviar_tabla_segmentos(int, t_pcb*, int, t_log*);
+void agregar_tabla_a_paquete(t_paquete*, t_pcb*, t_log*);
+void imprimir_tabla_segmentos(t_list* , t_log* );
+t_proceso * recibir_tabla_segmentos(int , t_log*);
+t_list* leer_tabla_segmentos(char*,int* );
+// [t_segmento1, t_segmento2, t_segmento3]
 #endif /* UTILS_H_ */
